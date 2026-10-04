@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/*
+ * NEXUS design tokens. Industrial minimalism: near-black, holographic blue
+ * and white; orange is reserved for warnings, gold for the centred card.
+ */
+@theme {
+  --color-void: #03050a;
+  --color-ink: #e8f0ff;
+  --color-dim: #7f8fb0;
+  --color-faint: #3b4763;
+  --color-holo: #8fb8ff;
+  --color-holo-hi: #d6e6ff;
+  --color-cyan: #6fe3ff;
+  --color-violet: #8a6bff;
+  --color-warn: #ff8a3d;    /* hue ≈ 25° */
+  --color-gold: #e9c46a;    /* hue ≈ 43° */
+  --color-ok: #7dffc4;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+:root {
+  color-scheme: dark;
+  --glass-bg: rgba(14, 22, 40, 0.42);
+  --glass-edge: rgba(160, 196, 255, 0.18);
+  --glass-hi: rgba(214, 230, 255, 0.08);
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* Tabular figures everywhere numbers are quoted. */
+.tnum { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+
+.glass {
+  background: linear-gradient(180deg, var(--glass-hi), transparent 40%), var(--glass-bg);
+  border: 1px solid var(--glass-edge);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4) inset, 0 30px 80px -30px rgba(40, 90, 255, 0.35);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+}
+
+.hairline { border-color: rgba(143, 184, 255, 0.14); }
+
+::selection { background: rgba(143, 184, 255, 0.3); }
+
+*:focus-visible { outline: 1px solid var(--color-holo); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* Scrollbars inside panels — almost invisible. */
+.nx-scroll { scrollbar-width: thin; scrollbar-color: rgba(143,184,255,.2) transparent; }
