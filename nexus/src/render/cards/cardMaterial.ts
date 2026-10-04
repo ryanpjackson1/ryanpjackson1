@@ -157,8 +157,8 @@ void main() {
 
   // ── outer halo: wider for gold (prominence by bloom, not brightness) ──
   float outside = max(d, 0.0);
-  float haloW = mix(26.0, 11.0, gold);
-  float edgeFade = smoothstep(0.0, 0.06, min(min(vUv.x, 1.0 - vUv.x) * plane.x, min(vUv.y, 1.0 - vUv.y) * plane.y));
+  float haloW = mix(28.0, 15.0, gold);
+  float edgeFade = smoothstep(0.0, 0.16, min(min(vUv.x, 1.0 - vUv.x) * plane.x, min(vUv.y, 1.0 - vUv.y) * plane.y));
   float halo = exp(-outside * haloW) * (1.0 - inside) * edgeFade;
   vec3 haloCol = mix(blue * 0.5, goldCol * 0.75, gold);
   haloCol = mix(haloCol, warnCol * 0.6, uWarn);

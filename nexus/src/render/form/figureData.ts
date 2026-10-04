@@ -22,7 +22,7 @@ export interface PointSet {
   nrm: Float32Array;
   /** Bust: (jaw, head, chest) weights. Hand: (bone, materialise seed, 0). */
   region: Float32Array;
-  /** Bead radius (m) — ~0.62 of the Poisson spacing so neighbours overlap. */
+  /** Bead radius (m) — ~0.82 of the Poisson spacing so neighbours overlap with no gap. */
   bead: number;
 }
 
@@ -67,7 +67,7 @@ async function build(gl: THREE.WebGLRenderer, kind: "bust" | "hand", target: num
     }
   }
   const spacing = Math.sqrt(sel.area / n);
-  return { count: n, pos, nrm, region, bead: spacing * 0.64 };
+  return { count: n, pos, nrm, region, bead: spacing * 0.82 };
 }
 
 export function getFigure(gl: THREE.WebGLRenderer, tier: number): Promise<PointSet> {

@@ -7,6 +7,7 @@ import { useNexus } from "@/stores/nexus";
 import { dispatch, handleUtterance } from "@/core/dispatch";
 import { formController } from "@/render/form/controller";
 import { simulateLocalSpeech } from "@/voice/speech";
+import { presenter } from "@/render/form/HandRig";
 
 /**
  * window.__nexus — a read-mostly handle used by the verification scripts
@@ -16,7 +17,7 @@ export function useDebugHandle() {
   useEffect(() => {
     const w = window as unknown as { __nexus?: unknown };
     w.__nexus = {
-      rt, formClock, presentation, formController,
+      rt, formClock, presentation, formController, presenter,
       store: useNexus,
       dispatch, say: handleUtterance, simulateLocalSpeech,
       sample: () => ({

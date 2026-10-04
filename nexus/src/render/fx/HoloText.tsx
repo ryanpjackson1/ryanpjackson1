@@ -131,11 +131,11 @@ export function HoloText() {
     // in human form the text sits low-left of the figure; otherwise above the ring
     const embodied = f.presence;
     g.position.set(
-      THREE.MathUtils.lerp(0, CORE.x - 0.55, embodied),
-      THREE.MathUtils.lerp(0.98, CORE.y - 0.36, embodied),
-      THREE.MathUtils.lerp(-2.9, CORE.z + 0.35, embodied),
+      THREE.MathUtils.lerp(0, CORE.x - 0.45, embodied),
+      THREE.MathUtils.lerp(0.98, CORE.y + 0.16, embodied),
+      THREE.MathUtils.lerp(-2.9, CORE.z + 0.05, embodied),
     );
-    g.scale.setScalar(THREE.MathUtils.lerp(1, 0.32, embodied));
+    g.scale.setScalar(THREE.MathUtils.lerp(1, 0.2, embodied));
     g.quaternion.copy(state.camera.quaternion);
     const assembled = THREE.MathUtils.smoothstep(t.current, 1.0, 1.7);
     const alive = 1 - THREE.MathUtils.smoothstep(t.current, 9, 11);

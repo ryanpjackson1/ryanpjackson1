@@ -57,7 +57,7 @@ export const WORLDS: Record<WorldId, World> = {
   },
   industrial: {
     id: "industrial", name: "Industrial Deck",
-    fog: "#0a0806", fogDensity: 0.05, key: "#ffd9a8", fill: "#3a4f9a", beams: 4, beamColor: "#ffcf96", dust: 1.6, floor: "deck",
+    fog: "#0d0906", fogDensity: 0.05, key: "#ffd9a8", fill: "#8a5f34", beams: 4, beamColor: "#ffc580", dust: 1.6, floor: "deck",
     // Sodium-warm and hard.
     grade: { shadow: [0.3, 0.16, 0.48], highlight: [1.0, 0.82, 0.58], split: 0.55, contrast: 1.26, warmth: 0.16, halation: 0.3, bleed: 0.9, saturation: 0.95 },
   },

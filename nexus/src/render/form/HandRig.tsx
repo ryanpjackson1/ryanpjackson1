@@ -45,9 +45,9 @@ export const presenter = {
 
 /** Screen-space poses (NDC) and distance from the lens. */
 const POSE = {
-  retracted: { x: 0.42, y: -1.85 },
-  presenting: { x: 0.3, y: -0.5 },
-  distance: 0.82,
+  retracted: { x: 0.7, y: -1.9 },
+  presenting: { x: 0.6, y: -0.46 },
+  distance: 1.2,
 };
 
 const R = new THREE.Vector3(), U = new THREE.Vector3(), F = new THREE.Vector3();

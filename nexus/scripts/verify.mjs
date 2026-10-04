@@ -17,7 +17,8 @@ const browser = await chromium.launch({
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 const errors = [];
 page.on("pageerror", (e) => errors.push(String(e)));
-page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
+// resource failures (blocked fonts / offline feeds in CI) are not page errors
+page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource/.test(m.text())) errors.push(m.text()); });
 const results = [];
 const check = (name, ok, detail = "") => { results.push({ name, ok, detail }); console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? "  — " + detail : ""}`); };
 const shot = async (n) => { await page.screenshot({ path: `${OUT}/${n}.png` }); console.log(`shot  ${OUT}/${n}.png`); };
@@ -96,7 +97,8 @@ const mouthTrace = await N(async () => {
     await new Promise((r) => requestAnimationFrame(r));
   }
   await run;
-  await new Promise((r) => setTimeout(r, 600));
+  // let the envelope release over real frames (software GL runs at a few fps)
+  for (let i = 0; i < 40 && n.rt.mouth !== 0; i++) await new Promise((r) => requestAnimationFrame(r));
   out.push(n.rt.mouth);
   return out;
 });
@@ -110,7 +112,9 @@ check("mouth closes in silence after speech", mouthTrace[mouthTrace.length - 1] 
 await N(() => window.__nexus.dispatch({ kind: "open-module", id: "system" }, "voice"));
 await wait(600); await shot("14-hand-rising");
 await wait(900); await shot("15-hand-presenting");
-await wait(3200); await shot("16-panel-settled");
+// wait on the rig itself: the hand has let go and lowered away
+await page.waitForFunction(() => window.__nexus.presenter?.stage === "idle" && window.__nexus.presenter?.released, null, { timeout: 180000 });
+await wait(2500); await shot("16-panel-settled");
 const r1 = await page.locator("section[aria-label='System panel']").boundingBox();
 await wait(2000);
 const r2 = await page.locator("section[aria-label='System panel']").boundingBox();

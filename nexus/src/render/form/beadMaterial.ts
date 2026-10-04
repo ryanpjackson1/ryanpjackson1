@@ -163,11 +163,11 @@ void main() {
   vec3 K = normalize(uKey);
   float key = clamp(dot(N, K), 0.0, 1.0);
   vec3 shadow = vec3(0.016, 0.042, 0.135);
-  vec3 lit = vec3(0.34, 0.54, 0.96);
+  vec3 lit = vec3(0.30, 0.48, 0.88);
   vec3 col = mix(shadow, lit, key);
   // glow only where the surface faces the key squarely (clamped pow)
   float facing = clamp(dot(sn, K), 0.0, 1.0);
-  col += vec3(0.5, 0.72, 1.0) * pow(facing, 12.0) * 0.6 * uGlow;
+  col += vec3(0.5, 0.72, 1.0) * pow(facing, 18.0) * 0.32 * uGlow;
   // per-bead specular so each reads as its own dot
   col += vec3(0.7, 0.85, 1.0) * pow(clamp(dot(bn, normalize(K + vec3(0.0, 0.0, 1.0))), 0.0, 1.0), 40.0) * 0.25;
   // mouth seam: a thin line that widens with the level — light kept to the seam
