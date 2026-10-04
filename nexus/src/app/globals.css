@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* Dark, restrained, industrial. Blue/white light only; no warning colours needed yet. */
+@theme {
+  --color-void: #03050a;
+  --color-ink: #e9f0ff;
+  --color-dim: #93a3c4;
+  --color-faint: #3a4762;
+  --color-holo: #8fb8ff;
+  --color-holo-hi: #d6e6ff;
+  --color-ok: #8be8c8;
+  --color-alert: #ffb27a;
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  --font-mono: "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
+}
+
+:root { color-scheme: dark; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.tnum { font-variant-numeric: tabular-nums; }
+
+.glass {
+  background: linear-gradient(180deg, rgba(214, 230, 255, 0.06), transparent 45%), rgba(10, 16, 30, 0.72);
+  border: 1px solid rgba(160, 196, 255, 0.18);
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  box-shadow: 0 30px 80px -30px rgba(30, 70, 200, 0.45);
+}
+
+.glass-solid {
+  /* Modal surfaces: opaque so text never competes with the room behind
+     (backdrop blur is not available everywhere, e.g. some VMs / remote desktop). */
+  background: linear-gradient(180deg, rgba(214, 230, 255, 0.05), transparent 40%), #080d19;
+  border: 1px solid rgba(160, 196, 255, 0.2);
+  box-shadow: 0 40px 120px -30px rgba(30, 70, 200, 0.5);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+}
+
+.hairline { border-color: rgba(143, 184, 255, 0.16); }
+
+:focus-visible { outline: 2px solid var(--color-holo); outline-offset: 2px; border-radius: 6px; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
