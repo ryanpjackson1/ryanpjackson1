@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "postinstall": "node scripts/copy-mediapipe.mjs"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^1.0.1",

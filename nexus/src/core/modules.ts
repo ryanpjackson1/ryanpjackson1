@@ -39,7 +39,7 @@ export const MODULES: Record<ModuleId, ModuleMeta> = {
   weather:   { id: "weather",   label: "Weather",   code: "WX-06", hue: 218, aliases: ["weather", "forecast", "temperature", "rain"] },
   ai:        { id: "ai",        label: "AI",        code: "AI-07", hue: 208, aliases: ["ai", "assistant", "intelligence", "knowledge"] },
   news:      { id: "news",      label: "News",      code: "NW-08", hue: 200, aliases: ["news", "headlines", "articles"] },
-  music:     { id: "music",     label: "Music",     code: "MU-09", hue: 193, aliases: ["music", "spotify", "song", "playing", "audio"] },
+  music:     { id: "music",     label: "Music",     code: "MU-09", hue: 193, aliases: ["music", "song", "now playing", "audio"] },
   system:    { id: "system",    label: "System",    code: "SY-10", hue: 186, aliases: ["system", "diagnostics", "cpu", "memory", "battery", "status"] },
 };
 
